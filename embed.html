@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FurryTeaParty 2023 Point Stats</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Noto Sans TC", "SF Pro TC", "SF Pro Text", "SF Pro Icons",
+          "PingFang TC", "Helvetica Neue", "Helvetica", "Arial",
+          "Microsoft JhengHei", wf_SegoeUI, "Segoe UI", Segoe, "Segoe WP",
+          Tahoma, Verdana, Ubuntu, "Bitstream Vera Sans", "DejaVu Sans",
+          微軟正黑體, "LiHei Pro", "WenQuanYi Micro Hei", "Droid Sans Fallback",
+          "AR PL UMing TW", Roboto, "Hiragino Maru Gothic ProN", メイリオ,
+          "ヒラギノ丸ゴ ProN W4", Meiryo, "Droid Sans", sans-serif;
+      }
+
+      body {
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media (max-width: 768px) {
+        #app {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="display: flex" id="app">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-grow: 1;
+          width: 24rem;
+        "
+      >
+        <div style="font-size: 2rem">偵探 / Detective</div>
+        <div style="font-size: 3rem; transition: 0.2s" id="detective">
+          Loading...
+        </div>
+      </div>
+      <div style="margin: 16px; border: 1px solid black"></div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-grow: 1;
+          width: 24rem;
+        "
+      >
+        <div style="font-size: 2rem">怪盜 / Phantom Thief</div>
+        <div style="font-size: 3rem; transition: 0.2s" id="phantomThief">
+          Loading...
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let detective = document.getElementById("detective");
+      let phantomThief = document.getElementById("phantomThief");
+
+      let _fetch = async () => {
+        let data = await fetch(
+          "https://ftp-squeak-reg-api.dcsx.edgeize.net/api/pointStats"
+        ).then((response) => response.json());
+
+        detective.style.opacity = 0;
+        phantomThief.style.opacity = 0;
+
+        setTimeout((_) => {
+          detective.innerText = data.stats.Detective;
+          phantomThief.innerText = data.stats.PhantomThief;
+        }, 250);
+
+        setTimeout((_) => {
+          detective.style.opacity = 1;
+          phantomThief.style.opacity = 1;
+        }, 500);
+      };
+
+      setTimeout(_fetch, 3 * 1000);
+      setInterval(_fetch, 10 * 1000);
+    </script>
+  </body>
+</html>

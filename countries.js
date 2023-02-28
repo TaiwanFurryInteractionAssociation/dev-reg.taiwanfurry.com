@@ -1,4 +1,12 @@
-[
+module.exports = [
+  {
+    code: "TW",
+    name: "Taiwan",
+  },
+  {
+    code: "JP",
+    name: "Japan",
+  },
   {
     code: "AF",
     name: "Afghanistan",
@@ -444,10 +452,6 @@
     name: "Jamaica",
   },
   {
-    code: "JP",
-    name: "Japan",
-  },
-  {
     code: "JE",
     name: "Jersey",
   },
@@ -870,10 +874,6 @@
   {
     code: "SY",
     name: "Syria",
-  },
-  {
-    code: "TW",
-    name: "Taiwan",
   },
   {
     code: "TJ",
