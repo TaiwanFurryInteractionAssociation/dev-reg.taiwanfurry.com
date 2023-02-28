@@ -1,11 +1,11 @@
 module.exports = [
   {
-    key: 0,
-    name: "Send",
+    key: "MAIL",
+    name: "Mail",
     icon: "send",
   },
   {
-    key: 1,
+    key: "ONSITE",
     name: "On-Site",
     icon: "desk",
   },
